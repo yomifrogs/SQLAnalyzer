@@ -1,0 +1,2 @@
+# SQLAnalyzer
+unfinished project
