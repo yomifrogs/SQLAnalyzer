@@ -15,7 +15,7 @@ namespace ConsoleApplication1
         [STAThread]
         static void Main(string[] args)
         {
-            string stPrompt;
+            //Sstring stPrompt;
             //stPrompt = getFolderPath();
 
             //foreach (string stFilePath in System.IO.Directory.GetFiles(stPrompt, "*.prc"))
@@ -32,7 +32,7 @@ SELECT * FROM R_1_1_0_SC..EEE WHERE C = 'D'
             Console.Write(query);
 
             SqlParserDebug test = new SqlParserDebug();
-            AnalyzeSQL(query);
+            AnalyzeTSQLQuerys(query);
             //test.RunDebug();
 
             Console.ReadLine();
@@ -63,7 +63,7 @@ SELECT * FROM R_1_1_0_SC..EEE WHERE C = 'D'
             return strFolderPath;
         }
 
-        static void AnalyzeSQL(string query)
+        static void AnalyzeTSQLQuerys(string query)
         {
             IList<ParseError> errors;
 
@@ -73,37 +73,67 @@ SELECT * FROM R_1_1_0_SC..EEE WHERE C = 'D'
             var parserStatements = parser.ParseStatementList(new StringReader(query), out errors);
 
             QuerySpecification QSF = new QuerySpecification();
-            
 
-
+            List<string[]> sqlstat = new List<string[]>();
 
             foreach (var statement in parserStatements.Statements)
             {
                 IQueryable<TSqlParserToken> tempA;
                 tempA = statement.ScriptTokenStream.AsQueryable();
-                //QueryExpression Expression = new QueryExpression();
-                
+
+                string keywordstat = "";
+                bool isKeywordContinue = true;
+                foreach(var str in tempA){
+
+                    if(isKeywordContinue){
+                        if (str.IsKeyword())
+                        {
+                            keywordstat = keywordstat == "" ? str.Text : (keywordstat + str.Text);
+                        }
+                        else
+                        {
+                            
+                        }
+                       
+                    }else{
+                        if(str.IsKeyword()){
+                            
+                        }else{
+                            
+                        }
+                    }
 
 
 
 
+
+                    if(str.IsKeyword()){
+                        if(keywordstat != ""){
+                        }else{
+                            keywordstat = str.Text;
+                        }
+                    
+                    }else if(str.TokenType != TSqlTokenType.WhiteSpace){
+                        keywordstat = "";
+
+                    }
+                }
             }
 
+            //var a = parsed.StartOffset;
 
-            var a = parsed.StartOffset;
+            //var t =  parsed.ScriptTokenStream[0];
+            ////TableNameDeclareCheckVisitor visitor = new TableNameDeclareCheckVisitor();
+            ////TSqlFragmentVisitor visitor = new TSqlFragmentVisitor();
+            ////parsed.Accept()
 
-            var t =  parsed.ScriptTokenStream[0];
-            //TableNameDeclareCheckVisitor visitor = new TableNameDeclareCheckVisitor();
-            //TSqlFragmentVisitor visitor = new TSqlFragmentVisitor();
-            //parsed.Accept()
+            //var v1 = new TSqlElementVisitor();
 
-            var v1 = new TSqlElementVisitor();
+            //Console.WriteLine("Start Console");
+            //parsed.Accept(v1);
 
-            Console.WriteLine("Start Console");
-            parsed.Accept(v1);
-
-            Console.WriteLine("End Console");
-            //Console.WriteLine(v1.Cnt);
+            //Console.WriteLine("End Console");
+            ////Console.WriteLine(v1.Cnt);
             //Console.WriteLine(v1.SelectList[0]);
 
             //parsed (var nPhrase in parsed.ScriptTokenStream)

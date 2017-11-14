@@ -1,0 +1,17 @@
+﻿<Properties StartupConfiguration="{A2C7958E-7265-4989-83BE-6ECBCB71ACC8}|Default">
+  <MonoDevelop.Ide.ItemProperties.ConsoleApplication1 PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ConsoleApplication1/Program.cs">
+    <Files>
+      <File FileName="ConsoleApplication1/Program.cs" Line="81" Column="1" />
+      <File FileName="ConsoleApplication1/SqlParserDebug.cs" Line="22" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/you/Reps/CS/SQLAnalyzer/ConsoleApplication1/Program.cs" relfile="ConsoleApplication1/Program.cs" line="26" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
