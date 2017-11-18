@@ -52,7 +52,7 @@ SELECT * FROM R_1_1_0_SC..EEE WHERE C = 'D'
 
                 parsed.Accept(new DebugSQLVisitor());
 
-                Console.WriteLine("End ");
+                            Console.WriteLine("End ");
 
 
                 tokenList = parsed.ScriptTokenStream;

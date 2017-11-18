@@ -27,6 +27,10 @@ SELECT * FROM R_1_1_0_SC..AAA WHERE A = 'B' ORDER BY A
 
 INSERT INTO R_1_1_0_SC..FFF
 SELECT * FROM R_1_1_0_SC..EEE WHERE C = 'D'
+INSERT INTO R_1_1_0_SC..GGG
+SELECT * FROM R_1_1_0_SC..JJJ WHERE H = 'I'
+INSERT INTO R_1_1_0_SC..KKK
+SELECT * FROM R_1_1_0_SC..NNN WHERE M = 'L'
 
             ";
             Console.Write(query);
@@ -65,62 +69,14 @@ SELECT * FROM R_1_1_0_SC..EEE WHERE C = 'D'
 
         static void AnalyzeTSQLQuerys(string query)
         {
-            IList<ParseError> errors;
 
-            var parser = new TSql110Parser(false);
-            TSqlFragment parsed = parser.Parse(new StringReader(query), out errors);
+            TSQLAnalyzer analyzer = new TSQLAnalyzer();
 
-            var parserStatements = parser.ParseStatementList(new StringReader(query), out errors);
 
-            QuerySpecification QSF = new QuerySpecification();
-
-            List<string[]> sqlstat = new List<string[]>();
-
-            foreach (var statement in parserStatements.Statements)
+            foreach (var tempB in analyzer.sqlstat)
             {
-                IQueryable<TSqlParserToken> tempA;
-                tempA = statement.ScriptTokenStream.AsQueryable();
-
-                string keywordstat = "";
-                bool isKeywordContinue = true;
-                foreach(var str in tempA){
-
-                    if(isKeywordContinue){
-                        if (str.IsKeyword())
-                        {
-                            keywordstat = keywordstat == "" ? str.Text : (keywordstat + str.Text);
-                        }
-                        else
-                        {
-                            
-                        }
-                       
-                    }else{
-                        if(str.IsKeyword()){
-                            
-                        }else{
-                            
-                        }
-                    }
-
-
-
-
-
-                    if(str.IsKeyword()){
-                        if(keywordstat != ""){
-                        }else{
-                            keywordstat = str.Text;
-                        }
-                    
-                    }else if(str.TokenType != TSqlTokenType.WhiteSpace){
-                        keywordstat = "";
-
-                    }
-                }
+                Console.WriteLine(tempB[0] + " : " + tempB[1] + " : " + tempB[2] + " : " + tempB[3]);
             }
-
-            //var a = parsed.StartOffset;
 
             //var t =  parsed.ScriptTokenStream[0];
             ////TableNameDeclareCheckVisitor visitor = new TableNameDeclareCheckVisitor();
